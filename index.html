@@ -1,0 +1,2040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Das Securities — AMFI Registered mutual fund advisory. Research-backed investment recommendations for SIP, lumpsum, tax saving, and retirement planning." />
+  <title>Das Securities — Invest Like the Top 1%</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS CUSTOM PROPERTIES
+    ============================================================ */
+    :root {
+      --green:       #1b3a2a;
+      --green-mid:   #244d38;
+      --cream:       #f4efe4;
+      --cream-dark:  #e8e0ce;
+      --accent:      #c8f135;
+      --accent-dim:  rgba(200, 241, 53, 0.12);
+      --text-dark:   #0f2119;
+      --text-muted:  rgba(244, 239, 228, 0.55);
+      --text-muted-dark: rgba(15, 33, 25, 0.5);
+
+      --font-serif:  'Cormorant Garamond', Georgia, serif;
+      --font-sans:   'DM Sans', sans-serif;
+
+      --nav-h:       68px;
+      --section-pad: clamp(72px, 10vw, 120px);
+      --container:   1180px;
+      --radius:      3px;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--cream);
+      color: var(--text-dark);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: var(--font-sans);
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    input, select, textarea {
+      font-family: var(--font-sans);
+    }
+
+    ul, ol {
+      list-style: none;
+    }
+
+    /* ============================================================
+       UTILITY
+    ============================================================ */
+    .container {
+      max-width: var(--container);
+      margin-inline: auto;
+      padding-inline: clamp(20px, 5vw, 60px);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    /* ---- Buttons ---- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+      transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      color: var(--text-dark);
+    }
+    .btn-accent:hover {
+      background: #d6ff3a;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--cream);
+      border: 1px solid rgba(244, 239, 228, 0.35);
+    }
+    .btn-ghost:hover {
+      border-color: var(--cream);
+    }
+
+    .btn-ghost-dark {
+      background: transparent;
+      color: var(--text-dark);
+      border: 1px solid rgba(15, 33, 25, 0.3);
+    }
+    .btn-ghost-dark:hover {
+      border-color: var(--text-dark);
+    }
+
+    /* ---- Section headings ---- */
+    .section-label {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .section-label--light {
+      color: var(--text-muted);
+    }
+
+    .section-label--dark {
+      color: var(--text-muted-dark);
+    }
+
+    /* ---- Accent line ---- */
+    .accent-line {
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--accent);
+      margin-top: 20px;
+    }
+
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      background: var(--green);
+      border-bottom: 1px solid rgba(244, 239, 228, 0.08);
+      transform: translateZ(0); /* iOS compositor hint */
+      transition: background 0.3s ease;
+    }
+
+    .navbar__inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar__logo {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--cream);
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    .navbar__logo span {
+      color: var(--accent);
+    }
+
+    .navbar__nav {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .navbar__links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .navbar__links a {
+      font-size: 0.84rem;
+      font-weight: 400;
+      color: rgba(244, 239, 228, 0.75);
+      letter-spacing: 0.02em;
+      transition: color 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .navbar__links a:hover {
+      color: var(--cream);
+    }
+
+    .navbar__cta {
+      padding: 10px 22px;
+      font-size: 0.8rem;
+    }
+
+    /* Mobile nav toggle */
+    .navbar__toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .navbar__toggle span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--cream);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* Mobile menu */
+    .navbar__mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--nav-h);
+      left: 0; right: 0;
+      background: var(--green);
+      border-top: 1px solid rgba(244, 239, 228, 0.08);
+      padding: 28px clamp(20px, 5vw, 60px) 36px;
+      flex-direction: column;
+      gap: 24px;
+      z-index: 999;
+    }
+
+    .navbar__mobile-menu.is-open {
+      display: flex;
+    }
+
+    .navbar__mobile-menu a {
+      font-size: 1.05rem;
+      color: rgba(244, 239, 228, 0.8);
+      letter-spacing: 0.02em;
+    }
+
+    .navbar__mobile-menu .btn {
+      align-self: flex-start;
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      min-height: 100svh;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      padding-top: var(--nav-h);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero__bg-text {
+      position: absolute;
+      top: 50%;
+      right: -2%;
+      transform: translateY(-50%);
+      font-family: var(--font-serif);
+      font-size: clamp(180px, 28vw, 380px);
+      font-weight: 700;
+      color: rgba(244, 239, 228, 0.035);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.04em;
+    }
+
+    .hero__inner {
+      position: relative;
+      z-index: 1;
+      padding-block: clamp(60px, 8vw, 100px);
+    }
+
+    .hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+
+    .hero__eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--accent);
+    }
+
+    .hero__headline {
+      font-family: var(--font-serif);
+      font-size: clamp(52px, 8.5vw, 116px);
+      font-weight: 600;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+      margin-bottom: 30px;
+    }
+
+    .hero__headline em {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .hero__sub {
+      font-family: var(--font-sans);
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      font-weight: 300;
+      color: rgba(244, 239, 228, 0.7);
+      max-width: 480px;
+      line-height: 1.65;
+      margin-bottom: 44px;
+    }
+
+    .hero__ctas {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* ============================================================
+       TRUST TICKER
+    ============================================================ */
+    .ticker {
+      background: var(--green);
+      border-top: 1px solid rgba(244, 239, 228, 0.08);
+      border-bottom: 1px solid rgba(244, 239, 228, 0.08);
+      padding-block: 16px;
+      overflow: hidden;
+    }
+
+    .ticker__track {
+      display: flex;
+      gap: 0;
+      white-space: nowrap;
+      animation: ticker-scroll 28s linear infinite;
+    }
+
+    .ticker__track:hover {
+      animation-play-state: paused;
+    }
+
+    .ticker__item {
+      display: inline-flex;
+      align-items: center;
+      gap: 22px;
+      padding-right: 22px;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(244, 239, 228, 0.45);
+    }
+
+    .ticker__dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    @keyframes ticker-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ============================================================
+       HOW IT WORKS
+    ============================================================ */
+    .how {
+      background: var(--cream);
+      padding-block: var(--section-pad);
+    }
+
+    .how__header {
+      margin-bottom: clamp(48px, 6vw, 72px);
+    }
+
+    .how__title {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 5vw, 58px);
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1.1;
+    }
+
+    .how__steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid rgba(15, 33, 25, 0.1);
+    }
+
+    .how__step {
+      padding: clamp(32px, 4vw, 52px) clamp(24px, 3.5vw, 44px);
+      border-right: 1px solid rgba(15, 33, 25, 0.1);
+      opacity: 1;
+      transition: opacity 0.6s ease;
+    }
+
+    .how__step:last-child {
+      border-right: none;
+    }
+
+    .how__step-num {
+      font-family: var(--font-serif);
+      font-size: clamp(64px, 8vw, 96px);
+      font-weight: 300;
+      color: rgba(15, 33, 25, 0.1);
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+
+    .how__step-title {
+      font-family: var(--font-serif);
+      font-size: clamp(20px, 2.2vw, 26px);
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .how__step-desc {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(15, 33, 25, 0.65);
+      line-height: 1.7;
+    }
+
+    .how__step-arrow {
+      display: none; /* shown via CSS on desktop between steps */
+    }
+
+    /* ============================================================
+       WHY DAS SECURITIES
+    ============================================================ */
+    .why {
+      background: var(--cream);
+      padding-block: var(--section-pad);
+      border-top: 1px solid rgba(15, 33, 25, 0.1);
+    }
+
+    .why__header {
+      margin-bottom: clamp(48px, 6vw, 72px);
+    }
+
+    .why__title {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 5vw, 58px);
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1.1;
+    }
+
+    .why__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid rgba(15, 33, 25, 0.1);
+    }
+
+    .why__card {
+      padding: clamp(32px, 4vw, 52px) clamp(24px, 3.5vw, 44px);
+      border-right: 1px solid rgba(15, 33, 25, 0.1);
+      opacity: 1;
+      transition: opacity 0.6s ease;
+    }
+
+    .why__card:last-child {
+      border-right: none;
+    }
+
+    .why__card-num {
+      font-family: var(--font-serif);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--text-muted-dark);
+      margin-bottom: 20px;
+    }
+
+    .why__card-title {
+      font-family: var(--font-serif);
+      font-size: clamp(22px, 2.4vw, 30px);
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .why__card-desc {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: rgba(15, 33, 25, 0.65);
+      line-height: 1.72;
+    }
+
+    /* ============================================================
+       FEATURED INSIGHT
+    ============================================================ */
+    .insight {
+      background: var(--green);
+      padding-block: var(--section-pad);
+    }
+
+    .insight__card {
+      border: 1px solid rgba(244, 239, 228, 0.12);
+      padding: clamp(48px, 7vw, 88px) clamp(32px, 6vw, 80px);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: end;
+    }
+
+    .insight__label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .insight__label::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: rgba(244, 239, 228, 0.3);
+    }
+
+    .insight__headline {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 5vw, 62px);
+      font-weight: 600;
+      color: var(--cream);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 18px;
+      max-width: 680px;
+    }
+
+    .insight__headline em {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .insight__sub {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(244, 239, 228, 0.6);
+      line-height: 1.65;
+      max-width: 540px;
+    }
+
+    .insight__cta {
+      white-space: nowrap;
+      align-self: flex-end;
+    }
+
+    .insight__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 2px;
+      transition: opacity 0.2s ease;
+    }
+
+    .insight__link:hover {
+      opacity: 0.75;
+    }
+
+    /* ============================================================
+       SIP CALCULATOR
+    ============================================================ */
+    .calc {
+      background: var(--cream);
+      padding-block: var(--section-pad);
+    }
+
+    .calc__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: start;
+    }
+
+    .calc__header {
+      margin-bottom: clamp(36px, 5vw, 56px);
+    }
+
+    /* Applied to full-width header above the grid */
+    .calc__header .section-label--dark { margin-bottom: 14px; }
+
+    .calc__title {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 4.5vw, 52px);
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1.1;
+    }
+
+    .calc__controls {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .calc__field label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-muted-dark);
+      margin-bottom: 14px;
+    }
+
+    .calc__field label span {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .calc__slider-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .calc__slider {
+      -webkit-appearance: none;
+      appearance: none;
+      flex: 1;
+      height: 2px;
+      background: rgba(15, 33, 25, 0.15);
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .calc__slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--text-dark);
+      border: 2px solid var(--cream);
+      box-shadow: 0 0 0 1px var(--text-dark);
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .calc__slider::-webkit-slider-thumb:hover {
+      background: var(--green-mid);
+    }
+
+    .calc__slider::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--text-dark);
+      border: 2px solid var(--cream);
+      cursor: pointer;
+    }
+
+    .calc__num-input {
+      width: 90px;
+      border: 1px solid rgba(15, 33, 25, 0.2);
+      border-radius: var(--radius);
+      background: transparent;
+      padding: 8px 10px;
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      color: var(--text-dark);
+      text-align: right;
+    }
+
+    .calc__results {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding-top: 8px;
+    }
+
+    .calc__chip {
+      border: 1px solid rgba(15, 33, 25, 0.12);
+      padding: 24px 28px;
+      background: white;
+    }
+
+    .calc__chip-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted-dark);
+      margin-bottom: 10px;
+    }
+
+    .calc__chip-value {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1;
+    }
+
+    .calc__chip--accent .calc__chip-value {
+      color: var(--green);
+    }
+
+    .calc__chip--accent {
+      border-color: rgba(27, 58, 42, 0.25);
+      background: rgba(27, 58, 42, 0.04);
+    }
+
+    .calc__footer {
+      margin-top: clamp(36px, 5vw, 52px);
+      padding-top: 28px;
+      border-top: 1px solid rgba(15, 33, 25, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .calc__footer p {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: rgba(15, 33, 25, 0.6);
+    }
+
+    .calc__footer-link {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      border-bottom: 1px solid rgba(15, 33, 25, 0.3);
+      padding-bottom: 1px;
+      white-space: nowrap;
+      transition: border-color 0.2s ease;
+    }
+
+    .calc__footer-link:hover {
+      border-color: var(--text-dark);
+    }
+
+    /* ============================================================
+       FAQ
+    ============================================================ */
+    .faq {
+      background: var(--green);
+      padding-block: var(--section-pad);
+    }
+
+    .faq__header {
+      margin-bottom: clamp(48px, 6vw, 72px);
+    }
+
+    .faq__title {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 5vw, 58px);
+      font-weight: 600;
+      color: var(--cream);
+      line-height: 1.1;
+    }
+
+    .faq__list {
+      border-top: 1px solid rgba(244, 239, 228, 0.1);
+    }
+
+    .faq__item {
+      border-bottom: 1px solid rgba(244, 239, 228, 0.1);
+    }
+
+    .faq__question {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      padding: 28px 0;
+      text-align: left;
+      font-family: var(--font-serif);
+      font-size: clamp(18px, 2vw, 22px);
+      font-weight: 500;
+      color: var(--cream);
+      cursor: pointer;
+      background: none;
+      border: none;
+      transition: color 0.2s ease;
+    }
+
+    .faq__question:hover {
+      color: var(--accent);
+    }
+
+    .faq__question:hover .faq__icon {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .faq__icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(244, 239, 228, 0.25);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: rgba(244, 239, 228, 0.5);
+      transition: transform 0.3s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .faq__item.is-open .faq__icon {
+      transform: rotate(45deg);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .faq__answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .faq__answer-inner {
+      padding-bottom: 28px;
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(244, 239, 228, 0.65);
+      line-height: 1.75;
+      max-width: 720px;
+    }
+
+    /* ============================================================
+       SIGNUP FORM
+    ============================================================ */
+    .signup {
+      background: var(--green);
+      padding-block: var(--section-pad);
+      border-top: 1px solid rgba(244, 239, 228, 0.08);
+    }
+
+    .signup__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(48px, 8vw, 100px);
+      align-items: start;
+    }
+
+    .signup__copy {}
+
+    .signup__title {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 5vw, 58px);
+      font-weight: 600;
+      color: var(--cream);
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .signup__title em {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .signup__sub {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(244, 239, 228, 0.6);
+      line-height: 1.7;
+      max-width: 380px;
+    }
+
+    .signup__trust {
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .signup__trust-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: rgba(244, 239, 228, 0.5);
+    }
+
+    .signup__trust-item::before {
+      content: '';
+      display: block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .signup__form-wrap {}
+
+    .signup__form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(244, 239, 228, 0.5);
+    }
+
+    .form-group input,
+    .form-group select {
+      background: rgba(244, 239, 228, 0.05);
+      border: 1px solid rgba(244, 239, 228, 0.15);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      font-size: 0.95rem;
+      color: var(--cream);
+      outline: none;
+      transition: border-color 0.25s ease, background 0.25s ease;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(244,239,228,0.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    .form-group select option {
+      background: var(--green);
+      color: var(--cream);
+    }
+
+    .form-group input::placeholder {
+      color: rgba(244, 239, 228, 0.25);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: rgba(244, 239, 228, 0.4);
+      background: rgba(244, 239, 228, 0.08);
+    }
+
+    .form-group input:hover,
+    .form-group select:hover {
+      border-color: rgba(244, 239, 228, 0.25);
+    }
+
+    .signup__submit {
+      margin-top: 8px;
+      padding: 16px 32px;
+      font-size: 0.88rem;
+    }
+
+    .signup__thankyou {
+      display: none;
+      padding: 40px 32px;
+      border: 1px solid rgba(200, 241, 53, 0.25);
+      background: rgba(200, 241, 53, 0.04);
+    }
+
+    .signup__thankyou.is-visible {
+      display: block;
+    }
+
+    .signup__thankyou-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+
+    .signup__thankyou p {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: rgba(244, 239, 228, 0.6);
+      line-height: 1.7;
+    }
+
+    .signup__thankyou-accent {
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer {
+      background: #111f17;
+      padding-block: clamp(48px, 6vw, 72px);
+      border-top: 1px solid rgba(244, 239, 228, 0.06);
+    }
+
+    .footer__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .footer__logo {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+
+    .footer__logo span {
+      color: var(--accent);
+    }
+
+    .footer__tagline {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: rgba(244, 239, 228, 0.4);
+      line-height: 1.65;
+      max-width: 240px;
+    }
+
+    .footer__col-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(244, 239, 228, 0.3);
+      margin-bottom: 16px;
+    }
+
+    .footer__instagram {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      font-weight: 400;
+      color: rgba(244, 239, 228, 0.65);
+      transition: color 0.2s ease;
+    }
+
+    .footer__instagram:hover {
+      color: var(--accent);
+    }
+
+    .footer__instagram-icon {
+      width: 18px;
+      height: 18px;
+      opacity: 0.5;
+      transition: opacity 0.2s ease;
+    }
+
+    .footer__instagram:hover .footer__instagram-icon {
+      opacity: 1;
+    }
+
+    .footer__disclaimer {
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: rgba(244, 239, 228, 0.25);
+      line-height: 1.75;
+    }
+
+    .footer__bottom {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(244, 239, 228, 0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer__copy {
+      font-size: 0.72rem;
+      color: rgba(244, 239, 228, 0.2);
+    }
+
+    .footer__amfi-badge {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(200, 241, 53, 0.4);
+      border: 1px solid rgba(200, 241, 53, 0.2);
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    /* ============================================================
+       RESPONSIVE — MOBILE
+    ============================================================ */
+    @media (max-width: 900px) {
+      .how__steps {
+        grid-template-columns: 1fr;
+      }
+      .how__step {
+        border-right: none;
+        border-bottom: 1px solid rgba(15, 33, 25, 0.1);
+      }
+      .how__step:last-child {
+        border-bottom: none;
+      }
+
+      .why__grid {
+        grid-template-columns: 1fr;
+      }
+      .why__card {
+        border-right: none;
+        border-bottom: 1px solid rgba(15, 33, 25, 0.1);
+      }
+      .why__card:last-child {
+        border-bottom: none;
+      }
+
+      .insight__card {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .calc__inner {
+        grid-template-columns: 1fr;
+      }
+
+      .signup__inner {
+        grid-template-columns: 1fr;
+      }
+
+      .footer__inner {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .navbar__links,
+      .navbar__cta {
+        display: none;
+      }
+      .navbar__toggle {
+        display: flex;
+      }
+
+      .hero__ctas {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .calc__chip-value {
+        font-size: 28px;
+      }
+      .calc__footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    /* ============================================================
+       PHASE 2 ① — CURSOR GRADIENT (green sections, pointer:fine only)
+    ============================================================ */
+    @media (pointer: fine) {
+      .green-section {
+        --mx: -600px;
+        --my: -600px;
+      }
+
+      .green-section::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        background: radial-gradient(
+          600px circle at var(--mx) var(--my),
+          rgba(200, 241, 53, 0.07),
+          transparent 70%
+        );
+      }
+
+      /* Lift direct containers above the ::before gradient layer */
+      .green-section > .container {
+        position: relative;
+        z-index: 1;
+      }
+    }
+
+    /* ============================================================
+       PHASE 2 ② — HERO ENTRANCE ANIMATION
+    ============================================================ */
+    @keyframes hero-in {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Each hero child gets this base class */
+    .hero__anim {
+      opacity: 0;
+      animation: hero-in 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .hero__anim--1 { animation-delay: 0ms; }
+    .hero__anim--2 { animation-delay: 175ms; }
+    .hero__anim--3 { animation-delay: 350ms; }
+    .hero__anim--4 { animation-delay: 525ms; }
+    .hero__anim--5 { animation-delay: 700ms; }
+
+    /* Headline lines must be block so each animates as its own row */
+    .hero__line {
+      display: block;
+    }
+
+    /* ============================================================
+       PHASE 2 ③ — SCROLL-TRIGGERED FADE
+    ============================================================ */
+    .fade-target {
+      opacity: 0;
+      transition: opacity 600ms ease;
+    }
+
+    .fade-target.is-visible {
+      opacity: 1;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <header class="navbar" id="navbar">
+    <div class="container navbar__inner">
+      <a href="#" class="navbar__logo">Das<span>.</span>Securities</a>
+
+      <nav class="navbar__nav" aria-label="Primary">
+        <ul class="navbar__links">
+          <li><a href="#why">Why Us</a></li>
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <a href="#signup" class="btn btn-accent navbar__cta">Get Started</a>
+      </nav>
+
+      <button class="navbar__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <nav class="navbar__mobile-menu" id="mobileMenu" aria-label="Mobile">
+    <a href="#why" class="mobile-link">Why Us</a>
+    <a href="#how" class="mobile-link">How It Works</a>
+    <a href="#faq" class="mobile-link">FAQ</a>
+    <a href="#signup" class="btn btn-accent">Get Started</a>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero green-section" id="hero">
+    <div class="hero__bg-text" aria-hidden="true">1%</div>
+    <div class="container hero__inner">
+      <p class="hero__eyebrow hero__anim hero__anim--1">AMFI Registered · Est. in India</p>
+      <h1 class="hero__headline">
+        <span class="hero__line hero__anim hero__anim--2">Invest Like</span>
+        <span class="hero__line hero__anim hero__anim--3"><em>the Top 1%</em></span>
+      </h1>
+      <p class="hero__sub hero__anim hero__anim--4">
+        1100+ mutual fund schemes in India.<br>
+        We find the right one for your goals.
+      </p>
+      <div class="hero__ctas hero__anim hero__anim--5">
+        <a href="#signup" class="btn btn-accent">Start Investing</a>
+        <a href="#how" class="btn btn-ghost">See How It Works &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TRUST TICKER
+  ============================================================ -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track" id="tickerTrack">
+      <!-- Items duplicated in JS for seamless loop -->
+      <span class="ticker__item">AMFI Registered<span class="ticker__dot"></span></span>
+      <span class="ticker__item">SIP &amp; Lumpsum<span class="ticker__dot"></span></span>
+      <span class="ticker__item">Tax Saving (ELSS)<span class="ticker__dot"></span></span>
+      <span class="ticker__item">Retirement Planning<span class="ticker__dot"></span></span>
+      <span class="ticker__item">Wealth Management<span class="ticker__dot"></span></span>
+      <span class="ticker__item">Goal-based Investing<span class="ticker__dot"></span></span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       HOW IT WORKS
+  ============================================================ -->
+  <section class="how" id="how">
+    <div class="container">
+      <div class="how__header">
+        <span class="section-label section-label--dark">The Process</span>
+        <h2 class="how__title">Three steps.<br>One clear path forward.</h2>
+      </div>
+      <div class="how__steps">
+        <article class="how__step fade-target">
+          <div class="how__step-num">01</div>
+          <h3 class="how__step-title">Share Your Goal</h3>
+          <p class="how__step-desc">Tell us where you want to go — retirement, wealth creation, tax saving, or something else entirely. No jargon required.</p>
+          <span class="accent-line"></span>
+        </article>
+        <article class="how__step fade-target">
+          <div class="how__step-num">02</div>
+          <h3 class="how__step-title">We Analyse &amp; Recommend</h3>
+          <p class="how__step-desc">Our team reviews 1100+ schemes, filters for your risk profile, and puts a curated shortlist in front of you — with plain-English reasoning.</p>
+          <span class="accent-line"></span>
+        </article>
+        <article class="how__step fade-target">
+          <div class="how__step-num">03</div>
+          <h3 class="how__step-title">You Start Investing</h3>
+          <p class="how__step-desc">Begin your SIP or lumpsum with full clarity. We stay available as your portfolio grows, your goals evolve, and the market does what it does.</p>
+          <span class="accent-line"></span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHY DAS SECURITIES
+  ============================================================ -->
+  <section class="why" id="why">
+    <div class="container">
+      <div class="why__header">
+        <span class="section-label section-label--dark">Why Us</span>
+        <h2 class="why__title">Not a platform.<br><em style="font-family:var(--font-serif);font-style:italic;font-weight:300;">A partner.</em></h2>
+      </div>
+      <div class="why__grid">
+        <article class="why__card fade-target">
+          <p class="why__card-num">01</p>
+          <h3 class="why__card-title">Research-Backed Picks</h3>
+          <p class="why__card-desc">Every recommendation is rooted in data — fund performance, expense ratios, manager track records, and macroeconomic context. No guesswork, no tips.</p>
+          <span class="accent-line"></span>
+        </article>
+        <article class="why__card fade-target">
+          <p class="why__card-num">02</p>
+          <h3 class="why__card-title">Jargon-Free Advice</h3>
+          <p class="why__card-desc">Alpha, beta, Sharpe ratio — we know them so you don't have to. We translate complex fund analysis into language that actually helps you decide.</p>
+          <span class="accent-line"></span>
+        </article>
+        <article class="why__card fade-target">
+          <p class="why__card-num">03</p>
+          <h3 class="why__card-title">Long-Term Wealth Mindset</h3>
+          <p class="why__card-desc">We're not optimised for transactions. We're optimised for outcomes. Decades, not quarters. Your financial independence is the only metric that matters.</p>
+          <span class="accent-line"></span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FEATURED INSIGHT
+  ============================================================ -->
+  <section class="insight green-section" id="insight">
+    <div class="container">
+      <div class="insight__card">
+        <div class="insight__content">
+          <p class="insight__label">Featured Read</p>
+          <h2 class="insight__headline">
+            Can an SIP <em>Really</em><br>
+            Make You a Crorepati?
+          </h2>
+          <p class="insight__sub">Or is it just another Mutual Fund myth? We break down the math, the timeline, and the one thing most investors get wrong.</p>
+        </div>
+        <div class="insight__cta">
+          <a href="#" class="insight__link">Read on Instagram &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SIP CALCULATOR
+  ============================================================ -->
+  <section class="calc" id="calculator">
+    <div class="container">
+      <div class="calc__header">
+        <span class="section-label section-label--dark">SIP Calculator</span>
+        <h2 class="calc__title">See your money grow.<br>Before you invest a rupee.</h2>
+      </div>
+      <div class="calc__inner">
+        <!-- Controls -->
+        <div class="calc__controls">
+          <!-- Monthly SIP -->
+          <div class="calc__field">
+            <label for="sipAmount">
+              Monthly SIP
+              <span id="sipAmountDisplay">₹5,000</span>
+            </label>
+            <div class="calc__slider-row">
+              <input
+                type="range"
+                class="calc__slider"
+                id="sipAmount"
+                min="500"
+                max="100000"
+                step="500"
+                value="5000"
+                aria-label="Monthly SIP amount"
+              />
+              <input
+                type="number"
+                class="calc__num-input"
+                id="sipAmountNum"
+                min="500"
+                max="100000"
+                step="500"
+                value="5000"
+                aria-label="SIP amount manual entry"
+              />
+            </div>
+          </div>
+
+          <!-- Duration -->
+          <div class="calc__field">
+            <label for="sipDuration">
+              Duration
+              <span id="sipDurationDisplay">10 years</span>
+            </label>
+            <div class="calc__slider-row">
+              <input
+                type="range"
+                class="calc__slider"
+                id="sipDuration"
+                min="1"
+                max="30"
+                step="1"
+                value="10"
+                aria-label="Investment duration in years"
+              />
+            </div>
+          </div>
+
+          <!-- Expected Return -->
+          <div class="calc__field">
+            <label for="sipReturn">
+              Expected Annual Return
+              <span id="sipReturnDisplay">12%</span>
+            </label>
+            <div class="calc__slider-row">
+              <input
+                type="range"
+                class="calc__slider"
+                id="sipReturn"
+                min="6"
+                max="18"
+                step="0.5"
+                value="12"
+                aria-label="Expected annual return percentage"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div class="calc__results">
+          <div class="calc__chip">
+            <p class="calc__chip-label">Total Invested</p>
+            <p class="calc__chip-value" id="totalInvested">₹6,00,000</p>
+          </div>
+          <div class="calc__chip">
+            <p class="calc__chip-label">Estimated Returns</p>
+            <p class="calc__chip-value" id="estimatedReturns">₹5,61,695</p>
+          </div>
+          <div class="calc__chip calc__chip--accent">
+            <p class="calc__chip-label">Final Corpus</p>
+            <p class="calc__chip-value" id="finalCorpus">₹11,61,695</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer CTA -->
+      <div class="calc__footer">
+        <p>Projected at <span id="calcReturnNote">12%</span> p.a. · Not a guarantee of returns.</p>
+        <a href="#signup" class="calc__footer-link">Want a portfolio built around this? Talk to us &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FAQ
+  ============================================================ -->
+  <section class="faq green-section" id="faq">
+    <div class="container">
+      <div class="faq__header">
+        <span class="section-label section-label--light">Common Questions</span>
+        <h2 class="faq__title">You asked.<br>We answer plainly.</h2>
+      </div>
+      <div class="faq__list" role="list">
+
+        <div class="faq__item" role="listitem">
+          <button class="faq__question" aria-expanded="false">
+            Is my money safe with Das Securities?
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer" role="region">
+            <div class="faq__answer-inner">
+              Your money is invested directly with AMFI-registered mutual fund houses — not held by us. Das Securities is an advisory, not a custodian. We never touch your capital. All investments are held in your name, in your demat or folio, under SEBI-regulated fund houses. We are registered with AMFI, which means our conduct is governed by a national regulatory body.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq__item" role="listitem">
+          <button class="faq__question" aria-expanded="false">
+            What's the minimum amount to start?
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer" role="region">
+            <div class="faq__answer-inner">
+              Most mutual funds in India allow SIPs starting at ₹500 per month. For lumpsum investments, the minimum is typically ₹1,000. There is no minimum to sign up with us — we'll work with whatever you can commit, and help you scale as your income grows. Starting small and staying consistent beats waiting to invest a large sum.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq__item" role="listitem">
+          <button class="faq__question" aria-expanded="false">
+            How is this different from Groww or Zerodha?
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer" role="region">
+            <div class="faq__answer-inner">
+              Groww and Zerodha are execution platforms — they let you invest, but they don't tell you <em>what</em> to invest in or <em>why</em>. You're on your own to research, pick, and manage. Das Securities is an advisory. We do the research, build the recommendation, explain the reasoning, and stay involved as your situation evolves. Think of them as a brokerage; think of us as your financial advisor.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq__item" role="listitem">
+          <button class="faq__question" aria-expanded="false">
+            Do you charge a fee?
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer" role="region">
+            <div class="faq__answer-inner">
+              We operate on a commission model — we receive a small trail commission from the fund house when you invest through us. This means our advisory is at no direct cost to you. We will always be transparent about how we earn and ensure our recommendations are never influenced by commission rates — your goal comes first.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq__item" role="listitem">
+          <button class="faq__question" aria-expanded="false">
+            How soon will I hear back after signing up?
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer" role="region">
+            <div class="faq__answer-inner">
+              Within 24–48 hours on business days. One of our advisors will reach out via phone or WhatsApp — whichever you prefer — to understand your goals in detail before we make any recommendation. No automated emails, no generic PDFs. A real conversation with a real person.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SIGNUP FORM
+  ============================================================ -->
+  <section class="signup green-section" id="signup">
+    <div class="container">
+      <div class="signup__inner">
+
+        <!-- Copy -->
+        <div class="signup__copy">
+          <span class="section-label section-label--light">Get Started</span>
+          <h2 class="signup__title">
+            Your first step<br>
+            toward <em>real</em> wealth.
+          </h2>
+          <p class="signup__sub">
+            Share a few details. We'll analyse your goals, match them to the right funds, and come back to you within 48 hours. No spam, no pressure.
+          </p>
+          <ul class="signup__trust">
+            <li class="signup__trust-item">AMFI Registered Distributor</li>
+            <li class="signup__trust-item">Zero spam. Zero cold calls.</li>
+            <li class="signup__trust-item">Your data stays with us — always</li>
+          </ul>
+        </div>
+
+        <!-- Form -->
+        <div class="signup__form-wrap">
+          <form class="signup__form" id="signupForm" novalidate>
+
+            <div class="form-group">
+              <label for="fullName">Full Name</label>
+              <input
+                type="text"
+                id="fullName"
+                name="fullName"
+                placeholder="Arjun Mehta"
+                autocomplete="name"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="+91 98765 43210"
+                autocomplete="tel"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="arjun@example.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="investmentGoal">Investment Goal</label>
+              <select id="investmentGoal" name="investmentGoal" required>
+                <option value="" disabled selected>Select your primary goal</option>
+                <option value="SIP">SIP (Systematic Investment Plan)</option>
+                <option value="Lumpsum">Lumpsum Investment</option>
+                <option value="Tax Saving ELSS">Tax Saving (ELSS)</option>
+                <option value="Retirement Planning">Retirement Planning</option>
+                <option value="Wealth Creation">Wealth Creation</option>
+                <option value="Not Sure Yet">Not Sure Yet</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-accent signup__submit">
+              Start Investing Smarter
+            </button>
+
+          </form>
+
+          <!-- Inline thank-you -->
+          <div class="signup__thankyou" id="signupThankyou" aria-live="polite">
+            <span class="signup__thankyou-accent"></span>
+            <h3 class="signup__thankyou-heading">You're on the list.</h3>
+            <p>Thank you — one of our advisors will reach out within 48 hours. In the meantime, follow us on <a href="#" style="color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:1px;">@dasecurities</a> for weekly investment insights.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+
+        <!-- Brand -->
+        <div class="footer__brand">
+          <p class="footer__logo">Das<span>.</span>Securities</p>
+          <p class="footer__tagline">Invest like the top 1%. Research-backed mutual fund advisory for the serious Indian retail investor.</p>
+        </div>
+
+        <!-- Connect -->
+        <div class="footer__col">
+          <p class="footer__col-label">Follow Us</p>
+          <a href="#" class="footer__instagram">
+            <svg class="footer__instagram-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+            @dasecurities
+          </a>
+        </div>
+
+        <!-- Legal -->
+        <div class="footer__col">
+          <p class="footer__col-label">Regulatory</p>
+          <p class="footer__disclaimer">
+            Das Securities is an AMFI Registered Mutual Fund Distributor. Mutual fund investments are subject to market risks. Read all scheme-related documents carefully before investing. Past performance is not indicative of future returns.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; 2025 Das Securities. All rights reserved.</p>
+        <span class="footer__amfi-badge">AMFI Registered</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    /* ---- Google Apps Script endpoint (placeholder) ---- */
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+
+    /* ============================================================
+       TICKER — duplicate content for seamless loop
+    ============================================================ */
+    (function initTicker() {
+      const track = document.getElementById('tickerTrack');
+      if (!track) return;
+      const clone = track.innerHTML;
+      track.innerHTML = clone + clone; // duplicate for seamless scroll
+    })();
+
+    /* ============================================================
+       MOBILE NAV TOGGLE
+    ============================================================ */
+    (function initMobileNav() {
+      const toggle = document.getElementById('navToggle');
+      const menu   = document.getElementById('mobileMenu');
+      if (!toggle || !menu) return;
+
+      toggle.addEventListener('click', () => {
+        const isOpen = menu.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      // Close on link click
+      menu.querySelectorAll('.mobile-link, .btn').forEach(link => {
+        link.addEventListener('click', () => {
+          menu.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+
+    /* ============================================================
+       SIP CALCULATOR
+    ============================================================ */
+    (function initCalc() {
+      const sipSlider    = document.getElementById('sipAmount');
+      const sipNumInput  = document.getElementById('sipAmountNum');
+      const durSlider    = document.getElementById('sipDuration');
+      const retSlider    = document.getElementById('sipReturn');
+
+      const sipDisplay   = document.getElementById('sipAmountDisplay');
+      const durDisplay   = document.getElementById('sipDurationDisplay');
+      const retDisplay   = document.getElementById('sipReturnDisplay');
+      const retNote      = document.getElementById('calcReturnNote');
+
+      const outInvested  = document.getElementById('totalInvested');
+      const outReturns   = document.getElementById('estimatedReturns');
+      const outCorpus    = document.getElementById('finalCorpus');
+
+      function formatINR(num) {
+        if (num >= 1e7)  return '₹' + (num / 1e7).toFixed(2) + ' Cr';
+        if (num >= 1e5)  return '₹' + (num / 1e5).toFixed(2) + ' L';
+        return '₹' + Math.round(num).toLocaleString('en-IN');
+      }
+
+      function formatSIP(val) {
+        if (val >= 1e5) return '₹' + (val / 1e5).toFixed(1) + ' L';
+        if (val >= 1e3) return '₹' + (val / 1e3).toFixed(val % 1000 === 0 ? 0 : 1) + ',000';
+        return '₹' + val;
+      }
+
+      function calculate() {
+        const P  = parseFloat(sipSlider.value);   // monthly SIP
+        const n  = parseFloat(durSlider.value);   // years
+        const r  = parseFloat(retSlider.value);   // annual %
+
+        const months    = n * 12;
+        const monthlyR  = r / 100 / 12;
+        const corpus    = P * (((Math.pow(1 + monthlyR, months) - 1) / monthlyR) * (1 + monthlyR));
+        const invested  = P * months;
+        const returns   = corpus - invested;
+
+        outInvested.textContent  = formatINR(invested);
+        outReturns.textContent   = formatINR(returns);
+        outCorpus.textContent    = formatINR(corpus);
+      }
+
+      function syncSliderAndNum() {
+        sipNumInput.value = sipSlider.value;
+        sipDisplay.textContent = formatSIP(parseFloat(sipSlider.value));
+      }
+
+      sipSlider.addEventListener('input', () => {
+        syncSliderAndNum();
+        calculate();
+      });
+
+      sipNumInput.addEventListener('input', () => {
+        let val = parseInt(sipNumInput.value, 10);
+        if (isNaN(val)) return;
+        val = Math.min(Math.max(val, 500), 100000);
+        sipSlider.value = val;
+        sipDisplay.textContent = formatSIP(val);
+        calculate();
+      });
+
+      durSlider.addEventListener('input', () => {
+        const v = durSlider.value;
+        durDisplay.textContent = v + (v === '1' ? ' year' : ' years');
+        calculate();
+      });
+
+      retSlider.addEventListener('input', () => {
+        const v = parseFloat(retSlider.value).toFixed(1).replace('.0', '');
+        retDisplay.textContent = v + '%';
+        retNote.textContent    = v + '%';
+        calculate();
+      });
+
+      calculate(); // initialise display
+    })();
+
+    /* ============================================================
+       FAQ ACCORDION
+    ============================================================ */
+    (function initFaq() {
+      document.querySelectorAll('.faq__question').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item   = btn.closest('.faq__item');
+          const answer = item.querySelector('.faq__answer');
+          const isOpen = item.classList.contains('is-open');
+
+          // Close all others
+          document.querySelectorAll('.faq__item.is-open').forEach(open => {
+            if (open !== item) {
+              open.classList.remove('is-open');
+              open.querySelector('.faq__question').setAttribute('aria-expanded', 'false');
+              open.querySelector('.faq__answer').style.maxHeight = '0';
+            }
+          });
+
+          if (isOpen) {
+            item.classList.remove('is-open');
+            btn.setAttribute('aria-expanded', 'false');
+            answer.style.maxHeight = '0';
+          } else {
+            item.classList.add('is-open');
+            btn.setAttribute('aria-expanded', 'true');
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+          }
+        });
+      });
+    })();
+
+    /* ============================================================
+       SIGNUP FORM — submit to APPS_SCRIPT_URL
+    ============================================================ */
+    (function initForm() {
+      const form      = document.getElementById('signupForm');
+      const thankyou  = document.getElementById('signupThankyou');
+      const submitBtn = form.querySelector('.signup__submit');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const data = {
+          name:  form.fullName.value.trim(),
+          phone: form.phone.value.trim(),
+          email: form.email.value.trim(),
+          goal:  form.investmentGoal.value,
+        };
+
+        // Basic validation
+        if (!data.name || !data.phone || !data.email || !data.goal) {
+          return;
+        }
+
+        submitBtn.textContent = 'Sending…';
+        submitBtn.disabled    = true;
+
+        try {
+          await fetch(APPS_SCRIPT_URL, {
+            method: 'POST',
+            mode:   'no-cors', // GAS requires no-cors from browser
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+        } catch (_) {
+          // no-cors always resolves; network errors silently handled
+        }
+
+        // Hide form, show thank-you
+        form.style.display = 'none';
+        thankyou.classList.add('is-visible');
+      });
+    })();
+
+    /* ============================================================
+       PHASE 2 ① — CURSOR-FOLLOWING RADIAL GRADIENT
+    ============================================================ */
+    (function initCursorGradient() {
+      // Only run on devices with a fine pointer (mouse/trackpad)
+      if (!window.matchMedia('(pointer: fine)').matches) return;
+
+      document.querySelectorAll('.green-section').forEach(section => {
+        section.addEventListener('mousemove', (e) => {
+          const rect = section.getBoundingClientRect();
+          section.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
+          section.style.setProperty('--my', (e.clientY - rect.top)  + 'px');
+        });
+      });
+    })();
+
+    /* ============================================================
+       PHASE 2 ③ — SCROLL-TRIGGERED FADE-IN (IntersectionObserver)
+    ============================================================ */
+    (function initScrollFade() {
+      const targets = document.querySelectorAll('.fade-target');
+      if (!targets.length) return;
+
+      // Group by parent container so stagger index resets per section
+      const parentMap = new Map();
+      targets.forEach(el => {
+        const parent = el.parentElement;
+        if (!parentMap.has(parent)) parentMap.set(parent, []);
+        parentMap.get(parent).push(el);
+      });
+
+      // Pre-assign transition delays based on within-group index
+      parentMap.forEach(group => {
+        group.forEach((el, i) => {
+          el.style.transitionDelay = (i * 150) + 'ms';
+        });
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target); // fire once — no re-animate on scroll-up
+          }
+        });
+      }, { threshold: 0.12 });
+
+      targets.forEach(el => observer.observe(el));
+    })();
+
+  </script>
+</body>
+</html>
