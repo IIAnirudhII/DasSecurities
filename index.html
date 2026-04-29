@@ -1067,6 +1067,23 @@
       margin-bottom: 20px;
     }
 
+    .form-error {
+      display: none;
+      font-size: 0.72rem;
+      color: #ff7b7b;
+      margin-top: 2px;
+    }
+
+    .form-group--error input,
+    .form-group--error select {
+      border-color: rgba(255, 123, 123, 0.6);
+      background: rgba(255, 123, 123, 0.05);
+    }
+
+    .form-group--error .form-error {
+      display: block;
+    }
+
     /* ============================================================
        FOOTER
     ============================================================ */
@@ -1690,6 +1707,7 @@
                 autocomplete="name"
                 required
               />
+              <span class="form-error" id="nameError"></span>
             </div>
 
             <div class="form-group">
@@ -1698,10 +1716,11 @@
                 type="tel"
                 id="phone"
                 name="phone"
-                placeholder="+91 "
+                placeholder="+91 98765 43210"
                 autocomplete="tel"
                 required
               />
+              <span class="form-error" id="phoneError"></span>
             </div>
 
             <div class="form-group">
@@ -1714,6 +1733,7 @@
                 autocomplete="email"
                 required
               />
+              <span class="form-error" id="emailError"></span>
             </div>
 
             <div class="form-group">
@@ -1727,6 +1747,7 @@
                 <option value="Wealth Creation">Wealth Creation</option>
                 <option value="Not Sure Yet">Not Sure Yet</option>
               </select>
+              <span class="form-error" id="goalError"></span>
             </div>
 
             <button type="submit" class="btn btn-accent signup__submit">
@@ -1795,7 +1816,7 @@
   ============================================================ -->
   <script>
     /* ---- Google Apps Script endpoint (placeholder) ---- */
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz4NGzRaomB9fHh3Uam_Co-XRSVK05PIsfzN2NvxNVID27FpPJ33ooOnbWrwbMZRl_2/exec';
 
     /* ============================================================
        TICKER — duplicate content for seamless loop
@@ -1950,8 +1971,28 @@
       const thankyou  = document.getElementById('signupThankyou');
       const submitBtn = form.querySelector('.signup__submit');
 
+      function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+      }
+
+      function isValidPhone(phone) {
+        // Strip spaces, dashes, dots, and optional +91 / 0 prefix
+        const cleaned = phone.replace(/[\s\-\.]/g, '').replace(/^\+91/, '').replace(/^0/, '');
+        return /^[6-9]\d{9}$/.test(cleaned);
+      }
+
+      function setError(inputId, errorId, message) {
+        document.getElementById(inputId).closest('.form-group').classList.add('form-group--error');
+        document.getElementById(errorId).textContent = message;
+      }
+
+      function clearErrors() {
+        form.querySelectorAll('.form-group').forEach(g => g.classList.remove('form-group--error'));
+      }
+
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
+        clearErrors();
 
         const data = {
           name:  form.fullName.value.trim(),
@@ -1960,10 +2001,35 @@
           goal:  form.investmentGoal.value,
         };
 
-        // Basic validation
-        if (!data.name || !data.phone || !data.email || !data.goal) {
-          return;
+        let valid = true;
+
+        if (!data.name) {
+          setError('fullName', 'nameError', 'Please enter your full name.');
+          valid = false;
         }
+
+        if (!data.phone) {
+          setError('phone', 'phoneError', 'Please enter your phone number.');
+          valid = false;
+        } else if (!isValidPhone(data.phone)) {
+          setError('phone', 'phoneError', 'Enter a valid 10-digit Indian mobile number.');
+          valid = false;
+        }
+
+        if (!data.email) {
+          setError('email', 'emailError', 'Please enter your email address.');
+          valid = false;
+        } else if (!isValidEmail(data.email)) {
+          setError('email', 'emailError', 'Enter a valid email address.');
+          valid = false;
+        }
+
+        if (!data.goal) {
+          setError('investmentGoal', 'goalError', 'Please select an investment goal.');
+          valid = false;
+        }
+
+        if (!valid) return;
 
         submitBtn.textContent = 'Sending…';
         submitBtn.disabled    = true;
@@ -1982,6 +2048,13 @@
         // Hide form, show thank-you
         form.style.display = 'none';
         thankyou.classList.add('is-visible');
+      });
+
+      // Clear field error on input
+      form.querySelectorAll('input, select').forEach(field => {
+        field.addEventListener('input', () => {
+          field.closest('.form-group').classList.remove('form-group--error');
+        });
       });
     })();
 
