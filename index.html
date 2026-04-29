@@ -808,6 +808,167 @@
     }
 
     /* ============================================================
+       PLAN YOUR GOAL
+    ============================================================ */
+    .goal {
+      background: var(--cream);
+      padding-block: var(--section-pad);
+      border-bottom: 1px solid rgba(15, 33, 25, 0.1);
+    }
+
+    .goal__header {
+      margin-bottom: clamp(36px, 5vw, 56px);
+    }
+
+    .goal__title {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 4.5vw, 52px);
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1.1;
+    }
+
+    .goal__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: start;
+    }
+
+    .goal__controls {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .goal__field-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-muted-dark);
+      margin-bottom: 14px;
+    }
+
+    .goal__field-label span {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .goal__pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .goal__pill {
+      padding: 9px 18px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: rgba(15, 33, 25, 0.55);
+      border: 1px solid rgba(15, 33, 25, 0.2);
+      border-radius: 100px;
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .goal__pill:hover {
+      border-color: var(--text-dark);
+      color: var(--text-dark);
+    }
+
+    .goal__pill.is-active {
+      background: var(--text-dark);
+      border-color: var(--text-dark);
+      color: var(--cream);
+    }
+
+    .goal__custom-input {
+      display: none;
+      margin-top: 14px;
+      width: 100%;
+      border: 1px solid rgba(15, 33, 25, 0.2);
+      border-radius: var(--radius);
+      background: transparent;
+      padding: 10px 14px;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      outline: none;
+      transition: border-color 0.25s ease;
+    }
+
+    .goal__custom-input::placeholder {
+      color: rgba(15, 33, 25, 0.3);
+    }
+
+    .goal__custom-input:focus {
+      border-color: rgba(15, 33, 25, 0.45);
+    }
+
+    .goal__custom-input.is-visible {
+      display: block;
+    }
+
+    .goal__input-row {
+      display: flex;
+      align-items: center;
+      border: 1px solid rgba(15, 33, 25, 0.2);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color 0.25s ease;
+    }
+
+    .goal__input-row:focus-within {
+      border-color: rgba(15, 33, 25, 0.45);
+    }
+
+    .goal__input-prefix {
+      padding: 10px 12px 10px 14px;
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text-muted-dark);
+      background: rgba(15, 33, 25, 0.03);
+      border-right: 1px solid rgba(15, 33, 25, 0.1);
+      flex-shrink: 0;
+      user-select: none;
+    }
+
+    .goal__text-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 10px 14px;
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      outline: none;
+      -moz-appearance: textfield;
+    }
+
+    .goal__text-input::-webkit-outer-spin-button,
+    .goal__text-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+
+    .goal__results {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding-top: 8px;
+    }
+
+    /* ============================================================
        FAQ
     ============================================================ */
     .faq {
@@ -1219,6 +1380,10 @@
         gap: 32px;
       }
 
+      .goal__inner {
+        grid-template-columns: 1fr;
+      }
+
       .calc__inner {
         grid-template-columns: 1fr;
       }
@@ -1376,8 +1541,8 @@
         <span class="hero__line hero__anim hero__anim--3"><em>the Top 1%</em></span>
       </h1>
       <p class="hero__sub hero__anim hero__anim--4">
-        1100+ mutual fund schemes in India.<br>
-        We find the right one for your goals.
+        <strong style="font-weight:500;color:rgba(244,239,228,0.9);">₹5 Cr+ invested &nbsp;|&nbsp; 120+ clients</strong><br>
+        Each one started with a single conversation.
       </p>
       <div class="hero__ctas hero__anim hero__anim--5">
         <a href="#signup" class="btn btn-accent">Start Investing</a>
@@ -1480,9 +1645,98 @@
           <p class="insight__sub">Or is it just another Mutual Fund myth? We break down the math, the timeline, and the one thing most investors get wrong.</p>
         </div>
         <div class="insight__cta">
-          <a href="#" class="insight__link">Read on Instagram &rarr;</a>
+          <a href="https://www.instagram.com/p/DVvQiovCdn7/?img_index=1" class="insight__link" target="_blank" rel="noopener">Read on Instagram &rarr;</a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PLAN YOUR GOAL
+  ============================================================ -->
+  <section class="goal" id="goal-planner">
+    <div class="container">
+
+      <div class="goal__header">
+        <span class="section-label section-label--dark">Goal Planner</span>
+        <h2 class="goal__title">Plan your goal.<br>Know what to invest.</h2>
+      </div>
+
+      <div class="goal__inner">
+
+        <!-- Controls -->
+        <div class="goal__controls">
+
+          <div class="goal__field">
+            <p class="goal__field-label">What are you saving for?</p>
+            <div class="goal__pills">
+              <button class="goal__pill is-active" data-goal="Car">Car</button>
+              <button class="goal__pill" data-goal="House">House / Down Payment</button>
+              <button class="goal__pill" data-goal="Vacation">Vacation</button>
+              <button class="goal__pill" data-goal="Custom">Other</button>
+            </div>
+            <input type="text" class="goal__custom-input" id="goalCustomName" placeholder="e.g. Wedding, Education…" />
+          </div>
+
+          <div class="goal__field">
+            <label class="goal__field-label" for="goalAmount">How much do you need?</label>
+            <div class="goal__input-row">
+              <span class="goal__input-prefix">₹</span>
+              <input
+                type="text"
+                inputmode="numeric"
+                id="goalAmount"
+                class="goal__text-input"
+                placeholder="10,00,000"
+                aria-label="Goal amount in rupees"
+              />
+            </div>
+          </div>
+
+          <div class="goal__field">
+            <label class="goal__field-label" for="goalYears">
+              Time to achieve
+              <span id="goalYearsDisplay">5 years</span>
+            </label>
+            <div class="calc__slider-row">
+              <input
+                type="range"
+                class="calc__slider"
+                id="goalYears"
+                min="1"
+                max="30"
+                step="1"
+                value="5"
+                aria-label="Years to achieve goal"
+              />
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Results -->
+        <div class="goal__results">
+          <div class="calc__chip">
+            <p class="calc__chip-label">Starting Monthly Investment</p>
+            <p class="calc__chip-value" id="goalMonthly">—</p>
+          </div>
+          <div class="calc__chip">
+            <p class="calc__chip-label">Total Amount Invested</p>
+            <p class="calc__chip-value" id="goalTotalInvested">—</p>
+          </div>
+          <div class="calc__chip calc__chip--accent">
+            <p class="calc__chip-label">Goal Amount</p>
+            <p class="calc__chip-value" id="goalTarget">—</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="calc__footer">
+        <p>Projected at 12.5% p.a. · 10% annual step-up · Not a guarantee of returns.</p>
+        <a href="#signup" class="calc__footer-link">Want help building this plan? Talk to us &rarr;</a>
+      </div>
+
     </div>
   </section>
 
@@ -1655,12 +1909,24 @@
 
         <div class="faq__item" role="listitem">
           <button class="faq__question" aria-expanded="false">
+            How much does this service cost?
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer" role="region">
+            <div class="faq__answer-inner">
+              Nothing. Our advisory service is completely free for you. There are no sign-up fees, no subscription charges, and no hidden costs at any point. You pay exactly ₹0 for the advice, the portfolio recommendation, and the ongoing support. We earn through a small trail commission paid by the fund house — not by you.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq__item" role="listitem">
+          <button class="faq__question" aria-expanded="false">
             How soon will I hear back after signing up?
             <span class="faq__icon" aria-hidden="true">+</span>
           </button>
           <div class="faq__answer" role="region">
             <div class="faq__answer-inner">
-              Within 24–48 hours on business days. One of our advisors will reach out via phone or WhatsApp — whichever you prefer — to understand your goals in detail before we make any recommendation. No automated emails, no generic PDFs. A real conversation with a real person.
+              Within 12 hours. One of our advisors will reach out via phone or WhatsApp — whichever you prefer — to understand your goals in detail before we make any recommendation. No automated emails, no generic PDFs. A real conversation with a real person.
             </div>
           </div>
         </div>
@@ -1760,7 +2026,7 @@
           <div class="signup__thankyou" id="signupThankyou" aria-live="polite">
             <span class="signup__thankyou-accent"></span>
             <h3 class="signup__thankyou-heading">You're on the list.</h3>
-            <p>Thank you — one of our advisors will reach out within 48 hours. In the meantime, follow us on <a href="#" style="color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:1px;">@dasecurities</a> for weekly investment insights.</p>
+            <p>Thank you — one of our advisors will reach out within the next 12 hours. In the meantime, follow us on <a href="https://www.instagram.com/dasecurities/" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:1px;">@dasecurities</a> for weekly investment insights.</p>
           </div>
         </div>
 
@@ -1784,7 +2050,7 @@
         <!-- Connect -->
         <div class="footer__col">
           <p class="footer__col-label">Follow Us</p>
-          <a href="#" class="footer__instagram">
+          <a href="https://www.instagram.com/dasecurities/" class="footer__instagram" target="_blank" rel="noopener">
             <svg class="footer__instagram-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
               <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
@@ -1929,6 +2195,94 @@
       });
 
       calculate(); // initialise display
+    })();
+
+    /* ============================================================
+       GOAL PLANNER
+    ============================================================ */
+    (function initGoalPlanner() {
+      const pills        = document.querySelectorAll('.goal__pill');
+      const customInput  = document.getElementById('goalCustomName');
+      const amountInput  = document.getElementById('goalAmount');
+      const yearsSlider  = document.getElementById('goalYears');
+      const yearsDisplay = document.getElementById('goalYearsDisplay');
+      const outMonthly   = document.getElementById('goalMonthly');
+      const outInvested  = document.getElementById('goalTotalInvested');
+      const outTarget    = document.getElementById('goalTarget');
+
+      function formatINR(num) {
+        if (num >= 1e7) return '₹' + (num / 1e7).toFixed(2) + ' Cr';
+        if (num >= 1e5) return '₹' + (num / 1e5).toFixed(2) + ' L';
+        return '₹' + Math.round(num).toLocaleString('en-IN');
+      }
+
+      pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          pills.forEach(p => p.classList.remove('is-active'));
+          pill.classList.add('is-active');
+          if (pill.dataset.goal === 'Custom') {
+            customInput.classList.add('is-visible');
+            customInput.focus();
+          } else {
+            customInput.classList.remove('is-visible');
+          }
+          calculate();
+        });
+      });
+
+      yearsSlider.addEventListener('input', () => {
+        const v = yearsSlider.value;
+        yearsDisplay.textContent = v + (v === '1' ? ' year' : ' years');
+        calculate();
+      });
+
+      amountInput.addEventListener('input', () => {
+        const raw     = amountInput.value.replace(/[^\d]/g, '');
+        const cursor  = amountInput.selectionStart;
+        const prevLen = amountInput.value.length;
+        amountInput.value = raw ? parseInt(raw, 10).toLocaleString('en-IN') : '';
+        // Adjust cursor so it doesn't jump to end when deleting mid-string
+        const diff = amountInput.value.length - prevLen;
+        amountInput.setSelectionRange(cursor + diff, cursor + diff);
+        calculate();
+      });
+      customInput.addEventListener('input', calculate);
+
+      function calculate() {
+        const raw  = amountInput.value.replace(/[^\d]/g, '');
+        const goal = parseFloat(raw);
+        const n    = parseInt(yearsSlider.value);
+
+        if (!goal || goal <= 0 || isNaN(goal)) {
+          outMonthly.textContent  = '—';
+          outInvested.textContent = '—';
+          outTarget.textContent   = '—';
+          return;
+        }
+
+        const r_m    = 12.5 / 100 / 12;
+        const stepUp = 0.10;
+
+        // annualFactor = FV of one year of monthly SIPs at end of that year
+        const annualFactor = ((Math.pow(1 + r_m, 12) - 1) / r_m) * (1 + r_m);
+
+        // multiplier M: sum of each year's contribution grown to end of period
+        let M = 0;
+        for (let y = 1; y <= n; y++) {
+          M += Math.pow(1 + stepUp, y - 1) * annualFactor * Math.pow(1 + r_m, (n - y) * 12);
+        }
+
+        const P = goal / M; // starting monthly SIP
+
+        let totalInvested = 0;
+        for (let y = 1; y <= n; y++) {
+          totalInvested += P * Math.pow(1 + stepUp, y - 1) * 12;
+        }
+
+        outMonthly.textContent  = formatINR(P);
+        outInvested.textContent = formatINR(totalInvested);
+        outTarget.textContent   = formatINR(goal);
+      }
     })();
 
     /* ============================================================
