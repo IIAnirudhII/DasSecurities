@@ -285,7 +285,7 @@
       min-height: 100svh;
       background: var(--green);
       display: flex;
-      align-items: center;
+      flex-direction: column;
       padding-top: var(--nav-h);
       position: relative;
       overflow: hidden;
@@ -299,7 +299,7 @@
       font-family: var(--font-serif);
       font-size: clamp(180px, 28vw, 380px);
       font-weight: 700;
-      color: rgba(244, 239, 228, 0.035);
+      color: rgba(244, 239, 228, 0.03);
       line-height: 1;
       pointer-events: none;
       user-select: none;
@@ -309,7 +309,20 @@
     .hero__inner {
       position: relative;
       z-index: 1;
-      padding-block: clamp(60px, 8vw, 100px);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding-block: clamp(32px, 3.5vw, 56px);
+    }
+
+    .hero__content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-bottom: clamp(20px, 2.5vw, 36px);
     }
 
     .hero__eyebrow {
@@ -340,7 +353,7 @@
       line-height: 0.95;
       letter-spacing: -0.02em;
       color: var(--cream);
-      margin-bottom: 30px;
+      margin-bottom: 28px;
     }
 
     .hero__headline em {
@@ -350,19 +363,78 @@
 
     .hero__sub {
       font-family: var(--font-sans);
-      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      font-size: clamp(0.95rem, 1.6vw, 1.1rem);
       font-weight: 300;
-      color: rgba(244, 239, 228, 0.7);
-      max-width: 480px;
-      line-height: 1.65;
-      margin-bottom: 44px;
+      color: rgba(244, 239, 228, 0.6);
+      max-width: 440px;
+      line-height: 1.7;
+      margin-inline: auto;
     }
 
-    .hero__ctas {
-      display: flex;
+    .hero__btn-outline {
+      display: inline-flex;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
+      gap: 10px;
+      margin-top: 24px;
+      padding: 14px 34px;
+      font-family: var(--font-sans);
+      font-size: 0.84rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--cream);
+      border: 1px solid rgba(244, 239, 228, 0.32);
+      border-radius: var(--radius);
+      background: transparent;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hero__btn-outline:hover {
+      border-color: rgba(244, 239, 228, 0.7);
+      box-shadow: 0 0 28px rgba(244, 239, 228, 0.07);
+    }
+
+    .hero__stats {
+      display: flex;
+      border-top: 1px solid rgba(244, 239, 228, 0.1);
+      padding-top: clamp(28px, 4vw, 44px);
+    }
+
+    .hero__stat {
+      flex: 1;
+      text-align: center;
+      padding-inline: clamp(12px, 3vw, 40px);
+      position: relative;
+    }
+
+    .hero__stat + .hero__stat::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10%;
+      height: 80%;
+      width: 1px;
+      background: rgba(244, 239, 228, 0.12);
+    }
+
+    .hero__stat-value {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: clamp(26px, 3.2vw, 40px);
+      font-weight: 600;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 9px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero__stat-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: rgba(244, 239, 228, 0.38);
     }
 
     /* ============================================================
@@ -808,167 +880,6 @@
     }
 
     /* ============================================================
-       PLAN YOUR GOAL
-    ============================================================ */
-    .goal {
-      background: var(--cream);
-      padding-block: var(--section-pad);
-      border-bottom: 1px solid rgba(15, 33, 25, 0.1);
-    }
-
-    .goal__header {
-      margin-bottom: clamp(36px, 5vw, 56px);
-    }
-
-    .goal__title {
-      font-family: var(--font-serif);
-      font-size: clamp(32px, 4.5vw, 52px);
-      font-weight: 600;
-      color: var(--text-dark);
-      line-height: 1.1;
-    }
-
-    .goal__inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(40px, 6vw, 80px);
-      align-items: start;
-    }
-
-    .goal__controls {
-      display: flex;
-      flex-direction: column;
-      gap: 36px;
-    }
-
-    .goal__field-label {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--text-muted-dark);
-      margin-bottom: 14px;
-    }
-
-    .goal__field-label span {
-      font-family: var(--font-serif);
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--text-dark);
-      text-transform: none;
-      letter-spacing: 0;
-    }
-
-    .goal__pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .goal__pill {
-      padding: 9px 18px;
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      color: rgba(15, 33, 25, 0.55);
-      border: 1px solid rgba(15, 33, 25, 0.2);
-      border-radius: 100px;
-      background: transparent;
-      cursor: pointer;
-      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-    }
-
-    .goal__pill:hover {
-      border-color: var(--text-dark);
-      color: var(--text-dark);
-    }
-
-    .goal__pill.is-active {
-      background: var(--text-dark);
-      border-color: var(--text-dark);
-      color: var(--cream);
-    }
-
-    .goal__custom-input {
-      display: none;
-      margin-top: 14px;
-      width: 100%;
-      border: 1px solid rgba(15, 33, 25, 0.2);
-      border-radius: var(--radius);
-      background: transparent;
-      padding: 10px 14px;
-      font-size: 0.95rem;
-      color: var(--text-dark);
-      outline: none;
-      transition: border-color 0.25s ease;
-    }
-
-    .goal__custom-input::placeholder {
-      color: rgba(15, 33, 25, 0.3);
-    }
-
-    .goal__custom-input:focus {
-      border-color: rgba(15, 33, 25, 0.45);
-    }
-
-    .goal__custom-input.is-visible {
-      display: block;
-    }
-
-    .goal__input-row {
-      display: flex;
-      align-items: center;
-      border: 1px solid rgba(15, 33, 25, 0.2);
-      border-radius: var(--radius);
-      overflow: hidden;
-      transition: border-color 0.25s ease;
-    }
-
-    .goal__input-row:focus-within {
-      border-color: rgba(15, 33, 25, 0.45);
-    }
-
-    .goal__input-prefix {
-      padding: 10px 12px 10px 14px;
-      font-family: var(--font-serif);
-      font-size: 1.1rem;
-      font-weight: 500;
-      color: var(--text-muted-dark);
-      background: rgba(15, 33, 25, 0.03);
-      border-right: 1px solid rgba(15, 33, 25, 0.1);
-      flex-shrink: 0;
-      user-select: none;
-    }
-
-    .goal__text-input {
-      flex: 1;
-      border: none;
-      background: transparent;
-      padding: 10px 14px;
-      font-family: var(--font-serif);
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: var(--text-dark);
-      outline: none;
-      -moz-appearance: textfield;
-    }
-
-    .goal__text-input::-webkit-outer-spin-button,
-    .goal__text-input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-    }
-
-    .goal__results {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      padding-top: 8px;
-    }
-
-    /* ============================================================
        FAQ
     ============================================================ */
     .faq {
@@ -1350,38 +1261,190 @@
     }
 
     /* ============================================================
+       TESTIMONIALS
+    ============================================================ */
+    .testimonials {
+      background: var(--cream);
+      padding-top: var(--section-pad);
+      padding-bottom: var(--section-pad);
+      border-top: 1px solid rgba(15, 33, 25, 0.1);
+    }
+
+    .testimonials__header {
+      margin-bottom: clamp(44px, 5.5vw, 64px);
+    }
+
+    .testimonials__title {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 5vw, 58px);
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1.1;
+    }
+
+    .testimonials__reel {
+      overflow: hidden;
+      padding-block: 6px;
+      margin-block: -6px;
+    }
+
+    .testimonials__track {
+      display: flex;
+      gap: 28px;
+      width: max-content;
+      will-change: transform;
+    }
+
+    .testimonial__card {
+      flex-shrink: 0;
+      width: 340px;
+      display: flex;
+      flex-direction: column;
+      padding: 34px 36px;
+      background: transparent;
+      border: 1px solid rgba(15, 33, 25, 0.09);
+      border-radius: 5px;
+      transition: border-color 0.4s ease;
+      cursor: default;
+    }
+
+    .testimonial__card:hover {
+      border-color: rgba(15, 33, 25, 0.22);
+      user-select: text;
+    }
+
+    .testimonial__quote {
+      font-family: var(--font-serif);
+      font-size: 2.6rem;
+      line-height: 1;
+      color: var(--accent);
+      margin-bottom: 16px;
+      user-select: none;
+    }
+
+    .testimonial__body {
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: rgba(15, 33, 25, 0.68);
+      line-height: 1.8;
+      flex: 1;
+    }
+
+    .testimonial__footer {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(15, 33, 25, 0.07);
+    }
+
+    .testimonial__name {
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      margin-bottom: 3px;
+      letter-spacing: 0.01em;
+    }
+
+    .testimonial__role {
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: rgba(15, 33, 25, 0.38);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ============================================================
+       CAROUSEL DOTS
+    ============================================================ */
+    .carousel-dots {
+      display: none;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .carousel-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(15, 33, 25, 0.15);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+
+    .carousel-dot.is-active {
+      background: var(--text-dark);
+      transform: scale(1.35);
+    }
+
+    /* ============================================================
        RESPONSIVE — MOBILE
     ============================================================ */
     @media (max-width: 900px) {
       .how__steps {
-        grid-template-columns: 1fr;
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        border: none;
       }
+      .how__steps::-webkit-scrollbar { display: none; }
       .how__step {
-        border-right: none;
-        border-bottom: 1px solid rgba(15, 33, 25, 0.1);
+        flex: 0 0 100%;
+        min-width: 0;
+        scroll-snap-align: start;
+        border: 1px solid rgba(15, 33, 25, 0.1);
       }
-      .how__step:last-child {
-        border-bottom: none;
-      }
+      .how__step:last-child { border: 1px solid rgba(15, 33, 25, 0.1); }
 
       .why__grid {
-        grid-template-columns: 1fr;
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        border: none;
       }
+      .why__grid::-webkit-scrollbar { display: none; }
       .why__card {
+        flex: 0 0 100%;
+        min-width: 0;
+        scroll-snap-align: start;
+        border: 1px solid rgba(15, 33, 25, 0.1);
+      }
+      .why__card:last-child { border: 1px solid rgba(15, 33, 25, 0.1); }
+
+      .testimonials__reel {
+        overflow-x: auto;
+        overflow-y: visible;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-block: 0;
+        margin-block: 0;
+      }
+      .testimonials__reel::-webkit-scrollbar { display: none; }
+      .testimonials__track {
+        animation: none !important;
+        width: auto;
+        gap: 0;
+      }
+      .testimonial__card {
+        flex: 0 0 100%;
+        min-width: 0;
+        width: auto;
+        border-radius: 0;
+        border-left: none;
         border-right: none;
-        border-bottom: 1px solid rgba(15, 33, 25, 0.1);
       }
-      .why__card:last-child {
-        border-bottom: none;
-      }
+
+      .carousel-dots { display: flex; }
 
       .insight__card {
         grid-template-columns: 1fr;
         gap: 32px;
-      }
-
-      .goal__inner {
-        grid-template-columns: 1fr;
       }
 
       .calc__inner {
@@ -1407,9 +1470,8 @@
         display: flex;
       }
 
-      .hero__ctas {
-        flex-direction: column;
-        align-items: flex-start;
+      .hero__stat-value {
+        font-size: 22px;
       }
     }
 
@@ -1477,6 +1539,7 @@
     .hero__anim--3 { animation-delay: 350ms; }
     .hero__anim--4 { animation-delay: 525ms; }
     .hero__anim--5 { animation-delay: 700ms; }
+    .hero__anim--6 { animation-delay: 875ms; }
 
     /* Headline lines must be block so each animates as its own row */
     .hero__line {
@@ -1535,19 +1598,38 @@
   <section class="hero green-section" id="hero">
     <div class="hero__bg-text" aria-hidden="true">1%</div>
     <div class="container hero__inner">
-      <p class="hero__eyebrow hero__anim hero__anim--1">AMFI Registered | Est. in India</p>
-      <h1 class="hero__headline">
-        <span class="hero__line hero__anim hero__anim--2">Invest Like</span>
-        <span class="hero__line hero__anim hero__anim--3"><em>the Top 1%</em></span>
-      </h1>
-      <p class="hero__sub hero__anim hero__anim--4">
-        <strong style="font-weight:500;color:rgba(244,239,228,0.9);">₹5 Cr+ invested &nbsp;|&nbsp; 120+ clients</strong><br>
-        Each one started with a single conversation.
-      </p>
-      <div class="hero__ctas hero__anim hero__anim--5">
-        <a href="#signup" class="btn btn-accent">Start Investing</a>
-        <a href="#how" class="btn btn-ghost">See How It Works &rarr;</a>
+
+      <!-- Centered main content -->
+      <div class="hero__content">
+        <p class="hero__eyebrow hero__anim hero__anim--1">AMFI Registered &middot; Est. in India</p>
+        <h1 class="hero__headline">
+          <span class="hero__line hero__anim hero__anim--2">Invest Like</span>
+          <span class="hero__line hero__anim hero__anim--3"><em>the Top 1%</em></span>
+        </h1>
+        <p class="hero__sub hero__anim hero__anim--4">
+          Research-backed mutual fund advisory for the serious Indian retail investor. No jargon, no guesswork — just clear, data-driven recommendations.
+        </p>
+        <a href="#signup" class="hero__btn-outline hero__anim hero__anim--5">
+          Start Investing &rarr;
+        </a>
       </div>
+
+      <!-- Stats bar -->
+      <div class="hero__stats hero__anim hero__anim--6">
+        <div class="hero__stat">
+          <span class="hero__stat-value">₹5 Cr+</span>
+          <span class="hero__stat-label">Assets Managed</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-value">120+</span>
+          <span class="hero__stat-label">Clients Served</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-value">₹0</span>
+          <span class="hero__stat-label">Advisory Fee</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1575,7 +1657,7 @@
         <span class="section-label section-label--dark">The Process</span>
         <h2 class="how__title">Three steps.<br>One clear path forward.</h2>
       </div>
-      <div class="how__steps">
+      <div class="how__steps" id="howSteps">
         <article class="how__step fade-target">
           <div class="how__step-num">01</div>
           <h3 class="how__step-title">Share Your Goal</h3>
@@ -1591,9 +1673,14 @@
         <article class="how__step fade-target">
           <div class="how__step-num">03</div>
           <h3 class="how__step-title">You Start Investing</h3>
-          <p class="how__step-desc">Begin your SIP or lumpsum with full clarity. We stay available as your portfolio grows, your goals evolve, and the market does what it does.</p>
+          <p class="how__step-desc">You're onboarded through Wealthy — a SEBI-regulated platform managing ₹5,000+ crore in client assets. Begin your SIP or lumpsum with full clarity, and we stay by your side as your portfolio grows and your goals evolve.</p>
           <span class="accent-line"></span>
         </article>
+      </div>
+      <div class="carousel-dots" id="howDots" aria-hidden="true">
+        <button class="carousel-dot is-active"></button>
+        <button class="carousel-dot"></button>
+        <button class="carousel-dot"></button>
       </div>
     </div>
   </section>
@@ -1607,7 +1694,7 @@
         <span class="section-label section-label--dark">Why Us</span>
         <h2 class="why__title">Not a platform.<br><em style="font-family:var(--font-serif);font-style:italic;font-weight:300;">A partner.</em></h2>
       </div>
-      <div class="why__grid">
+      <div class="why__grid" id="whyGrid">
         <article class="why__card fade-target">
           <p class="why__card-num">01</p>
           <h3 class="why__card-title">Research-Backed Picks</h3>
@@ -1626,6 +1713,11 @@
           <p class="why__card-desc">We're not optimised for transactions. We're optimised for outcomes. Decades, not quarters. Your financial independence is the only metric that matters.</p>
           <span class="accent-line"></span>
         </article>
+      </div>
+      <div class="carousel-dots" id="whyDots" aria-hidden="true">
+        <button class="carousel-dot is-active"></button>
+        <button class="carousel-dot"></button>
+        <button class="carousel-dot"></button>
       </div>
     </div>
   </section>
@@ -1648,95 +1740,6 @@
           <a href="https://www.instagram.com/p/DVvQiovCdn7/?img_index=1" class="insight__link" target="_blank" rel="noopener">Read on Instagram &rarr;</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       PLAN YOUR GOAL
-  ============================================================ -->
-  <section class="goal" id="goal-planner">
-    <div class="container">
-
-      <div class="goal__header">
-        <span class="section-label section-label--dark">Goal Planner</span>
-        <h2 class="goal__title">Plan your goal.<br>Know what to invest.</h2>
-      </div>
-
-      <div class="goal__inner">
-
-        <!-- Controls -->
-        <div class="goal__controls">
-
-          <div class="goal__field">
-            <p class="goal__field-label">What are you saving for?</p>
-            <div class="goal__pills">
-              <button class="goal__pill is-active" data-goal="Car">Car</button>
-              <button class="goal__pill" data-goal="House">House / Down Payment</button>
-              <button class="goal__pill" data-goal="Vacation">Vacation</button>
-              <button class="goal__pill" data-goal="Custom">Other</button>
-            </div>
-            <input type="text" class="goal__custom-input" id="goalCustomName" placeholder="e.g. Wedding, Education…" />
-          </div>
-
-          <div class="goal__field">
-            <label class="goal__field-label" for="goalAmount">How much do you need?</label>
-            <div class="goal__input-row">
-              <span class="goal__input-prefix">₹</span>
-              <input
-                type="text"
-                inputmode="numeric"
-                id="goalAmount"
-                class="goal__text-input"
-                placeholder="10,00,000"
-                aria-label="Goal amount in rupees"
-              />
-            </div>
-          </div>
-
-          <div class="goal__field">
-            <label class="goal__field-label" for="goalYears">
-              Time to achieve
-              <span id="goalYearsDisplay">5 years</span>
-            </label>
-            <div class="calc__slider-row">
-              <input
-                type="range"
-                class="calc__slider"
-                id="goalYears"
-                min="1"
-                max="30"
-                step="1"
-                value="5"
-                aria-label="Years to achieve goal"
-              />
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Results -->
-        <div class="goal__results">
-          <div class="calc__chip">
-            <p class="calc__chip-label">Starting Monthly Investment</p>
-            <p class="calc__chip-value" id="goalMonthly">—</p>
-          </div>
-          <div class="calc__chip">
-            <p class="calc__chip-label">Total Amount Invested</p>
-            <p class="calc__chip-value" id="goalTotalInvested">—</p>
-          </div>
-          <div class="calc__chip calc__chip--accent">
-            <p class="calc__chip-label">Goal Amount</p>
-            <p class="calc__chip-value" id="goalTarget">—</p>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="calc__footer">
-        <p>Projected at 12.5% p.a. · 10% annual step-up · Not a guarantee of returns.</p>
-        <a href="#signup" class="calc__footer-link">Want help building this plan? Talk to us &rarr;</a>
-      </div>
-
     </div>
   </section>
 
@@ -1845,6 +1848,163 @@
         <p>Projected at <span id="calcReturnNote">12%</span> p.a. · Not a guarantee of returns.</p>
         <a href="#signup" class="calc__footer-link">Want a portfolio built around this? Talk to us &rarr;</a>
       </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TESTIMONIALS
+  ============================================================ -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="testimonials__header">
+        <span class="section-label section-label--dark">Client Stories</span>
+        <h2 class="testimonials__title">Trusted by investors<br><em style="font-family:var(--font-serif);font-style:italic;font-weight:300;">across India.</em></h2>
+      </div>
+    </div>
+
+    <div class="testimonials__reel" id="testimonialsReel">
+      <div class="testimonials__track" id="testimonialsTrack">
+
+        <article class="testimonial__card">
+          <div class="testimonial__quote" aria-hidden="true">&ldquo;</div>
+          <p class="testimonial__body">Running a business means cash flows are unpredictable. Aveek helped me structure investments without locking up liquidity. That balance has been a game changer.</p>
+          <div class="testimonial__footer">
+            <p class="testimonial__name">Somya Barthwal</p>
+            <p class="testimonial__role">Business Owner</p>
+          </div>
+        </article>
+
+        <article class="testimonial__card">
+          <div class="testimonial__quote" aria-hidden="true">&ldquo;</div>
+          <p class="testimonial__body">Working in media, markets were never my focus. During volatile phases, Aveek's calm explanations and timely calls helped me avoid emotional decisions.</p>
+          <div class="testimonial__footer">
+            <p class="testimonial__name">Anirudh</p>
+            <p class="testimonial__role">Times Group</p>
+          </div>
+        </article>
+
+        <article class="testimonial__card">
+          <div class="testimonial__quote" aria-hidden="true">&ldquo;</div>
+          <p class="testimonial__body">With a demanding job, I didn't have time to track markets. Aveek simplified everything and built a plan I can stick to without constantly worrying.</p>
+          <div class="testimonial__footer">
+            <p class="testimonial__name">Namrata</p>
+            <p class="testimonial__role">Amazon</p>
+          </div>
+        </article>
+
+        <article class="testimonial__card">
+          <div class="testimonial__quote" aria-hidden="true">&ldquo;</div>
+          <p class="testimonial__body">I was completely new to investing and honestly intimidated. He broke everything down step-by-step and helped me start small with confidence.</p>
+          <div class="testimonial__footer">
+            <p class="testimonial__name">Sumedha</p>
+            <p class="testimonial__role">Student</p>
+          </div>
+        </article>
+
+        <article class="testimonial__card">
+          <div class="testimonial__quote" aria-hidden="true">&ldquo;</div>
+          <p class="testimonial__body">I wanted structured long-term investing, not random tips. Aveek helped me align my portfolio with clear goals instead of short-term noise.</p>
+          <div class="testimonial__footer">
+            <p class="testimonial__name">Mansi</p>
+            <p class="testimonial__role">Adani Group</p>
+          </div>
+        </article>
+
+        <article class="testimonial__card">
+          <div class="testimonial__quote" aria-hidden="true">&ldquo;</div>
+          <p class="testimonial__body">I value logic and structure, and that's exactly how Aveek approaches investing. Every recommendation is backed by reasoning, not just market sentiment.</p>
+          <div class="testimonial__footer">
+            <p class="testimonial__name">Anubhav Das</p>
+            <p class="testimonial__role">McKinsey</p>
+          </div>
+        </article>
+
+        <article class="testimonial__card">
+          <div class="testimonial__quote" aria-hidden="true">&ldquo;</div>
+          <p class="testimonial__body">My biggest issue was panic during market dips. Aveek stayed consistently available, helping me stay disciplined when it mattered most.</p>
+          <div class="testimonial__footer">
+            <p class="testimonial__name">Prabhanshu</p>
+            <p class="testimonial__role">Business Owner</p>
+          </div>
+        </article>
+
+        <article class="testimonial__card">
+          <div class="testimonial__quote" aria-hidden="true">&ldquo;</div>
+          <p class="testimonial__body">I used to overcomplicate investing. Aveek simplified my entire portfolio and helped me focus only on what actually drives returns.</p>
+          <div class="testimonial__footer">
+            <p class="testimonial__name">Vishal</p>
+            <p class="testimonial__role">Business Owner</p>
+          </div>
+        </article>
+
+        <article class="testimonial__card">
+          <div class="testimonial__quote" aria-hidden="true">&ldquo;</div>
+          <p class="testimonial__body">I've tried multiple advisors before, but never felt this level of personal attention. The advice actually fits my situation, not generic templates.</p>
+          <div class="testimonial__footer">
+            <p class="testimonial__name">Loveesh</p>
+            <p class="testimonial__role">Business Owner</p>
+          </div>
+        </article>
+
+        <article class="testimonial__card">
+          <div class="testimonial__quote" aria-hidden="true">&ldquo;</div>
+          <p class="testimonial__body">What I appreciate most is the regular tracking and updates. It's not just investment advice — it's ongoing accountability.</p>
+          <div class="testimonial__footer">
+            <p class="testimonial__name">Udit</p>
+            <p class="testimonial__role">Business Owner</p>
+          </div>
+        </article>
+
+        <article class="testimonial__card">
+          <div class="testimonial__quote" aria-hidden="true">&ldquo;</div>
+          <p class="testimonial__body">Coming from a finance background, I'm particular about who I trust. Aveek's approach is clear, disciplined, and professionally sound.</p>
+          <div class="testimonial__footer">
+            <p class="testimonial__name">Shreya</p>
+            <p class="testimonial__role">Bank of America</p>
+          </div>
+        </article>
+
+        <article class="testimonial__card">
+          <div class="testimonial__quote" aria-hidden="true">&ldquo;</div>
+          <p class="testimonial__body">He's extremely proactive — whether it's market changes or portfolio adjustments, I'm always informed before I even think about it.</p>
+          <div class="testimonial__footer">
+            <p class="testimonial__name">Ishita</p>
+            <p class="testimonial__role">Bank of America</p>
+          </div>
+        </article>
+
+        <article class="testimonial__card">
+          <div class="testimonial__quote" aria-hidden="true">&ldquo;</div>
+          <p class="testimonial__body">The focus on fundamentals over trends really stood out. It's a long-term approach that aligns well with how I think about capital.</p>
+          <div class="testimonial__footer">
+            <p class="testimonial__name">Samyak</p>
+            <p class="testimonial__role">McKinsey</p>
+          </div>
+        </article>
+
+        <article class="testimonial__card">
+          <div class="testimonial__quote" aria-hidden="true">&ldquo;</div>
+          <p class="testimonial__body">I moved from scattered investments to a structured portfolio with clear direction. The improvement was visible within a few months.</p>
+          <div class="testimonial__footer">
+            <p class="testimonial__name">Dhruvjyoti</p>
+            <p class="testimonial__role">Maruti</p>
+          </div>
+        </article>
+
+        <article class="testimonial__card">
+          <div class="testimonial__quote" aria-hidden="true">&ldquo;</div>
+          <p class="testimonial__body">No over-promises, no unnecessary noise. Just clear guidance and consistent execution — exactly what I was looking for.</p>
+          <div class="testimonial__footer">
+            <p class="testimonial__name">Aayush</p>
+            <p class="testimonial__role">Business Owner</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="carousel-dots" id="testimonialsDots" aria-hidden="true"></div>
     </div>
   </section>
 
@@ -2198,91 +2358,163 @@
     })();
 
     /* ============================================================
-       GOAL PLANNER
+       SWIPE CAROUSELS
     ============================================================ */
-    (function initGoalPlanner() {
-      const pills        = document.querySelectorAll('.goal__pill');
-      const customInput  = document.getElementById('goalCustomName');
-      const amountInput  = document.getElementById('goalAmount');
-      const yearsSlider  = document.getElementById('goalYears');
-      const yearsDisplay = document.getElementById('goalYearsDisplay');
-      const outMonthly   = document.getElementById('goalMonthly');
-      const outInvested  = document.getElementById('goalTotalInvested');
-      const outTarget    = document.getElementById('goalTarget');
+    (function initCarousels() {
+      function setup(trackId, dotsId) {
+        const track = document.getElementById(trackId);
+        const dots  = document.querySelectorAll('#' + dotsId + ' .carousel-dot');
+        if (!track || !dots.length) return;
 
-      function formatINR(num) {
-        if (num >= 1e7) return '₹' + (num / 1e7).toFixed(2) + ' Cr';
-        if (num >= 1e5) return '₹' + (num / 1e5).toFixed(2) + ' L';
-        return '₹' + Math.round(num).toLocaleString('en-IN');
-      }
+        const total = dots.length;
+        let timer;
 
-      pills.forEach(pill => {
-        pill.addEventListener('click', () => {
-          pills.forEach(p => p.classList.remove('is-active'));
-          pill.classList.add('is-active');
-          if (pill.dataset.goal === 'Custom') {
-            customInput.classList.add('is-visible');
-            customInput.focus();
-          } else {
-            customInput.classList.remove('is-visible');
-          }
-          calculate();
+        function currentIndex() {
+          return Math.round(track.scrollLeft / track.clientWidth);
+        }
+
+        function goTo(i) {
+          track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' });
+        }
+
+        function updateDots() {
+          const index = currentIndex();
+          dots.forEach((d, i) => d.classList.toggle('is-active', i === index));
+        }
+
+        function advance() {
+          goTo((currentIndex() + 1) % total);
+        }
+
+        function startAuto() {
+          clearInterval(timer);
+          timer = setInterval(advance, 5000);
+        }
+
+        function stopAuto() {
+          clearInterval(timer);
+        }
+
+        track.addEventListener('scroll', updateDots, { passive: true });
+
+        // Pause on touch, resume after user lifts finger
+        track.addEventListener('touchstart', stopAuto, { passive: true });
+        track.addEventListener('touchend', startAuto, { passive: true });
+
+        dots.forEach((dot, i) => {
+          dot.addEventListener('click', () => {
+            goTo(i);
+            startAuto();
+          });
         });
-      });
 
-      yearsSlider.addEventListener('input', () => {
-        const v = yearsSlider.value;
-        yearsDisplay.textContent = v + (v === '1' ? ' year' : ' years');
-        calculate();
-      });
-
-      amountInput.addEventListener('input', () => {
-        const raw     = amountInput.value.replace(/[^\d]/g, '');
-        const cursor  = amountInput.selectionStart;
-        const prevLen = amountInput.value.length;
-        amountInput.value = raw ? parseInt(raw, 10).toLocaleString('en-IN') : '';
-        // Adjust cursor so it doesn't jump to end when deleting mid-string
-        const diff = amountInput.value.length - prevLen;
-        amountInput.setSelectionRange(cursor + diff, cursor + diff);
-        calculate();
-      });
-      customInput.addEventListener('input', calculate);
-
-      function calculate() {
-        const raw  = amountInput.value.replace(/[^\d]/g, '');
-        const goal = parseFloat(raw);
-        const n    = parseInt(yearsSlider.value);
-
-        if (!goal || goal <= 0 || isNaN(goal)) {
-          outMonthly.textContent  = '—';
-          outInvested.textContent = '—';
-          outTarget.textContent   = '—';
-          return;
-        }
-
-        const r_m    = 12.5 / 100 / 12;
-        const stepUp = 0.10;
-
-        // annualFactor = FV of one year of monthly SIPs at end of that year
-        const annualFactor = ((Math.pow(1 + r_m, 12) - 1) / r_m) * (1 + r_m);
-
-        // multiplier M: sum of each year's contribution grown to end of period
-        let M = 0;
-        for (let y = 1; y <= n; y++) {
-          M += Math.pow(1 + stepUp, y - 1) * annualFactor * Math.pow(1 + r_m, (n - y) * 12);
-        }
-
-        const P = goal / M; // starting monthly SIP
-
-        let totalInvested = 0;
-        for (let y = 1; y <= n; y++) {
-          totalInvested += P * Math.pow(1 + stepUp, y - 1) * 12;
-        }
-
-        outMonthly.textContent  = formatINR(P);
-        outInvested.textContent = formatINR(totalInvested);
-        outTarget.textContent   = formatINR(goal);
+        // Only run the timer while the carousel is visible in the viewport
+        new IntersectionObserver((entries) => {
+          entries[0].isIntersecting ? startAuto() : stopAuto();
+        }, { threshold: 0.5 }).observe(track);
       }
+
+      setup('howSteps', 'howDots');
+      setup('whyGrid', 'whyDots');
+    })();
+
+    /* ============================================================
+       TESTIMONIALS
+    ============================================================ */
+    (function initTestimonials() {
+      const reel     = document.getElementById('testimonialsReel');
+      const track    = document.getElementById('testimonialsTrack');
+      const dotsWrap = document.getElementById('testimonialsDots');
+      if (!reel || !track || !dotsWrap) return;
+
+      const isMobile = () => window.matchMedia('(max-width: 900px)').matches;
+      const origCards = Array.from(track.children);
+      const total = origCards.length;
+
+      // ---- Desktop: duplicate cards for seamless infinite loop ----
+      if (!isMobile()) {
+        origCards.forEach(card => {
+          const clone = card.cloneNode(true);
+          clone.setAttribute('aria-hidden', 'true');
+          track.appendChild(clone);
+        });
+
+        // Wait one frame so the DOM paints and scrollWidth is accurate
+        requestAnimationFrame(() => {
+          const oneSetWidth = track.scrollWidth / 2;
+          const normalSpeed = oneSetWidth / (160 * 60); // px per frame at 60fps ≈ 160s loop
+          let speed  = normalSpeed;
+          let target = normalSpeed;
+          let pos    = -oneSetWidth;
+
+          function tick() {
+            // Lerp toward target speed (0.085 ≈ 300–600ms settle time)
+            speed += (target - speed) * 0.085;
+            pos += speed;
+            if (pos >= 0) pos -= oneSetWidth;
+            track.style.transform = `translateX(${pos}px)`;
+            requestAnimationFrame(tick);
+          }
+
+          reel.addEventListener('mouseenter', () => { target = 0; });
+          reel.addEventListener('mouseleave', () => { target = normalSpeed; });
+
+          requestAnimationFrame(tick);
+        });
+
+        return;
+      }
+
+      // ---- Mobile only ----
+      let timer = null;
+      let restartDelay = null;
+
+      // Build dots
+      for (let i = 0; i < total; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' is-active' : '');
+        dot.addEventListener('click', () => {
+          reel.scrollTo({ left: i * reel.clientWidth, behavior: 'smooth' });
+          scheduleRestart();
+        });
+        dotsWrap.appendChild(dot);
+      }
+      const dots = dotsWrap.querySelectorAll('.carousel-dot');
+
+      function currentIndex() {
+        return Math.round(reel.scrollLeft / reel.clientWidth);
+      }
+
+      function updateDots() {
+        const idx = currentIndex();
+        dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+      }
+
+      function advance() {
+        reel.scrollTo({ left: ((currentIndex() + 1) % total) * reel.clientWidth, behavior: 'smooth' });
+      }
+
+      function startAuto() {
+        clearInterval(timer);
+        timer = setInterval(advance, 3000);
+      }
+
+      function stopAuto() {
+        clearInterval(timer);
+        clearTimeout(restartDelay);
+      }
+
+      function scheduleRestart() {
+        stopAuto();
+        restartDelay = setTimeout(startAuto, 10000);
+      }
+
+      reel.addEventListener('scroll', updateDots, { passive: true });
+      reel.addEventListener('touchstart', scheduleRestart, { passive: true });
+
+      new IntersectionObserver((entries) => {
+        entries[0].isIntersecting ? startAuto() : stopAuto();
+      }, { threshold: 0.4 }).observe(reel);
     })();
 
     /* ============================================================
